@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #f7f7f5;
+    color: #1c1c1c;
+    font-family: var(--font-body), serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* ========================
+   ANIMATIONS
+   ======================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 1s ease-out forwards;
+}
+
+.animate-fade-up-delay-1 {
+  animation-delay: 0.3s;
+}
+
+.animate-fade-up-delay-2 {
+  animation-delay: 0.7s;
+}
+
+.animate-fade-up-delay-3 {
+  animation-delay: 1.4s;
+}
+
+.animate-fade-in-delay {
+  opacity: 0;
+  animation: fadeIn 1s ease-out 2s forwards;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================
+   FORM STYLES
+   ======================== */
+.form-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #d8d8d6;
+  padding: 0.8rem 0;
+  font-family: var(--font-body), serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #1c1c1c;
+  outline: none;
+  transition: border-color 0.3s ease;
+  resize: none;
+}
+
+.form-input:focus {
+  border-bottom-color: #1c1c1c;
+}

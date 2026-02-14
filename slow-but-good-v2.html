@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>slow but good</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Shippori+Mincho:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1c1c1c;
+    --white: #f7f7f5;
+    --accent: #2c5a8a;
+    --gray: #919191;
+    --light-gray: #d8d8d6;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Shippori Mincho', serif;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--white);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ========================
+     HERO
+     ======================== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 8vw;
+    position: relative;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--black);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.3s forwards;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gray);
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.7s forwards;
+  }
+
+  .hero-foryou {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 1.4s forwards;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .hero-foryou::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1.2rem;
+    height: 1px;
+    background-color: var(--accent);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    right: 8vw;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    writing-mode: vertical-rl;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 2s forwards;
+  }
+
+  /* ========================
+     SECTIONS COMMON
+     ======================== */
+  section {
+    padding: 8rem 8vw;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin-bottom: 3rem;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--light-gray);
+    opacity: 0.5;
+  }
+
+  /* ========================
+     ABOUT
+     ======================== */
+  .about {
+    max-width: 640px;
+  }
+
+  .about-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .about-company {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .about-text {
+    font-size: 0.95rem;
+    color: var(--gray);
+    line-height: 2.2;
+    font-family: var(--font-body);
+    font-weight: 300;
+  }
+
+  /* ========================
+     TOOLS
+     ======================== */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    max-width: 720px;
+  }
+
+  .tool-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .tool-names {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .tool-names span {
+    color: var(--light-gray);
+    margin: 0 0.3em;
+    font-weight: 400;
+  }
+
+  .tool-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* ========================
+     WRITING
+     ======================== */
+  .writing-placeholder {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--light-gray);
+    font-weight: 300;
+  }
+
+  /* ========================
+     CONTACT
+     ======================== */
+  .contact-inner {
+    max-width: 480px;
+  }
+
+  .contact-intro {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--gray);
+    margin-bottom: 3rem;
+    line-height: 2;
+    font-weight: 300;
+  }
+
+  .form-group {
+    margin-bottom: 2rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--light-gray);
+    padding: 0.8rem 0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.3s ease;
+    resize: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-bottom-color: var(--black);
+  }
+
+  .form-group textarea {
+    min-height: 100px;
+    line-height: 1.7;
+  }
+
+  .form-submit {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: transparent;
+    border: 1px solid var(--black);
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+
+  .form-submit:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* ========================
+     FOOTER
+     ======================== */
+  footer {
+    padding: 3rem 8vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--light-gray);
+  }
+
+  .footer-copy {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--light-gray);
+    letter-spacing: 0.05em;
+  }
+
+  /* ========================
+     ANIMATIONS
+     ======================== */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========================
+     RESPONSIVE
+     ======================== */
+  @media (max-width: 640px) {
+    section {
+      padding: 5rem 6vw;
+    }
+
+    .hero {
+      padding: 3rem 6vw;
+    }
+
+    .hero-scroll {
+      display: none;
+    }
+
+    footer {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 class="hero-title">slow but good</h1>
+    <p class="hero-tagline">Good things take time. I take more.</p>
+    <p class="hero-foryou">for you.</p>
+    <span class="hero-scroll">scroll</span>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section>
+    <p class="section-label reveal">About</p>
+    <div class="about">
+      <h2 class="about-name reveal">早乙女 貴昭</h2>
+      <p class="about-company reveal">有限会社さおとめの事務所</p>
+      <p class="about-text reveal">デザインを30年ほど。道具も環境も時代と一緒に変わりました。今はAIと暮らしています。</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TOOLS -->
+  <section>
+    <p class="section-label reveal">Tools</p>
+    <div class="tools-grid">
+      <div class="tool-group reveal">
+        <p class="tool-names">InDesign <span>/</span> Illustrator <span>/</span> Photoshop</p>
+        <p class="tool-desc">紙とインクの世界。一番長い付き合いです。</p>
+      </div>
+      <div class="tool-group reveal">
+        <p class="tool-names">Next.js <span>/</span> Supabase <span>/</span> Vercel</p>
+        <p class="tool-desc">現場で使えるアプリをつくります。私も使ってます。</p>
+      </div>
+      <div class="tool-group reveal">
+        <p class="tool-names">Claude <span>/</span> ChatGPT</p>
+        <p class="tool-desc">AIで、あなたの面倒を減らします。ついでに私のも。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WRITING -->
+  <section>
+    <p class="section-label reveal">Writing</p>
+    <p class="writing-placeholder reveal">準備中。ゆっくりですが、書きます。</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section>
+    <p class="section-label reveal">Contact</p>
+    <div class="contact-inner">
+      <p class="contact-intro reveal">お仕事のご相談、お気軽にどうぞ。</p>
+      <form class="reveal" onsubmit="return false;">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">有限会社さおとめの事務所</span>
+    <span class="footer-copy">&copy; 2026</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
