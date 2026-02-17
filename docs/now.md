@@ -17,11 +17,14 @@
 
 - Shippori Mincho の weight 300 は Google Fonts で利用不可 → 400/500 に変更
 
+## 2026-02-17: Vercel デプロイ完了
+
+- Vercel デプロイ確認済み: https://slow-but-good.vercel.app/
+
 ### 未着手
 
 - Formspree または Vercel Functions によるフォーム送信機能
 - OGP画像（`public/og-image.png`）作成
 - 独自ドメイン設定
-- Vercel デプロイ（GitHub連携）
 - MDX記事の執筆
-- metadataBase のドメイン設定（現在 example.com）
+- ~~metadataBase のドメイン設定~~ → 完了（slow-but-good.vercel.app に設定済み）
