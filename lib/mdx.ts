@@ -10,6 +10,7 @@ export type PostMeta = {
   tags: string[]
   description?: string
   ogImage?: string
+  published: boolean
   slug: string
 }
 
@@ -30,11 +31,14 @@ export function getAllPosts(): PostMeta[] {
       tags: data.tags || [],
       description: data.description || '',
       ogImage: data.ogImage || '',
+      published: data.published ?? false,
       slug,
     }
   })
 
-  return posts.sort((a, b) => (a.date > b.date ? -1 : 1))
+  return posts
+    .filter((post) => post.published)
+    .sort((a, b) => (a.date > b.date ? -1 : 1))
 }
 
 export function getPost(slug: string) {
@@ -49,6 +53,7 @@ export function getPost(slug: string) {
       tags: data.tags || [],
       description: data.description || '',
       ogImage: data.ogImage || '',
+      published: data.published ?? false,
       slug,
     },
     content,
