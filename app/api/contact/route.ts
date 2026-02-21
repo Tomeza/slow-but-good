@@ -39,7 +39,14 @@ const MAX_EMAIL_LENGTH = 320
 const MAX_MESSAGE_LENGTH = 5000
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// 遅延初期化（ビルド時にAPIキーが不要になる）
+let resend: Resend | null = null
+function getResend() {
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resend
+}
 
 type ContactRequest = {
   name: string
@@ -108,7 +115,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true })
     }
 
-    const { error } = await resend.emails.send({
+    const { error } = await getResend().emails.send({
       from: 'noreply@saotomeno.com',
       to: 'info@saotomeno.com',
       subject: `[slow but good] ${trimmedName}様からのお問い合わせ`,
