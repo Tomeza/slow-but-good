@@ -33,11 +33,10 @@ const nextConfig = {
             value: 'max-age=31536000; includeSubDomains',
           },
           // ============================================
-          // CSP: Report-Onlyで監視中
-          // 本適用時は Content-Security-Policy に変更
+          // CSP: 本適用中
           // ============================================
           {
-            key: 'Content-Security-Policy-Report-Only',
+            key: 'Content-Security-Policy',
             value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';",
           },
         ],
