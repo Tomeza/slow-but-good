@@ -54,20 +54,36 @@ export default function ContactForm() {
         </ScrollReveal>
         <ScrollReveal>
           {formState === 'success' ? (
-            <p className="font-body text-[0.95rem] text-muted font-light">
-              送信ありがとうございます。
-            </p>
+            <div>
+              <p className="font-body text-[0.95rem] text-muted font-light mb-6">
+                送信ありがとうございます。
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setFormState('idle')
+                  setName('')
+                  setEmail('')
+                  setMessage('')
+                  setHoneypot('')
+                }}
+                className="font-body text-[0.85rem] text-border hover:text-accent transition-colors underline"
+              >
+                もう一通送る
+              </button>
+            </div>
           ) : (
             <form onSubmit={handleSubmit}>
-              {/* Honeypot field - hidden from users */}
+              {/* Honeypot field - hidden from users, bots fill this */}
               <input
                 type="text"
-                name="website"
+                name="confirm_email_z"
                 value={honeypot}
                 onChange={(e) => setHoneypot(e.target.value)}
                 className="absolute -left-[9999px]"
                 tabIndex={-1}
-                autoComplete="off"
+                autoComplete="new-password"
+                aria-hidden="true"
               />
               <div className="mb-8">
                 <label className="block font-display text-[0.65rem] tracking-[0.15em] uppercase text-border mb-2">
