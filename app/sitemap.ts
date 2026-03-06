@@ -5,12 +5,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()
 
   const postUrls = posts.map((post) => ({
-    url: `https://example.com/writing/${post.slug}`,
+    url: `https://www.saotomeno.com/writing/${post.slug}`,
     lastModified: new Date(post.date),
   }))
 
   return [
-    { url: 'https://example.com', lastModified: new Date() },
+    { url: 'https://www.saotomeno.com', lastModified: new Date() },
     ...postUrls,
   ]
 }
