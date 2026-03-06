@@ -41,6 +41,9 @@ export const metadata: Metadata = {
     description: 'Good things take time. I take more.',
     images: ['/og-image.png'],
   },
+  verification: {
+    google: 'b3EsuaWnzr-fZ059rcXjzCRVi294rLhmBPXXaUpXJo0',
+  },
 }
 
 const jsonLd = {
