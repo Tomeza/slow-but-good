@@ -20,6 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: `${meta.title} — slow but good`,
       description: meta.description,
+      alternates: {
+        canonical: `https://www.saotomeno.com/writing/${params.slug}`,
+      },
       openGraph: {
         title: meta.title,
         description: meta.description,

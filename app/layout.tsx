@@ -18,6 +18,9 @@ const shipporiMincho = Shippori_Mincho({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.saotomeno.com'),
+  alternates: {
+    canonical: 'https://www.saotomeno.com',
+  },
   title: 'slow but good — 早乙女貴昭',
   description:
     'デザインを30年ほど。道具も環境も時代と一緒に変わりました。今はAIと暮らしています。',
